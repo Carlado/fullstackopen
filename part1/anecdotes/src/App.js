@@ -25,7 +25,15 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
   const [points, setPoints] = useState({});
-  console.log(points);
+
+  const getHighestRatedIndex = () => {
+    if (!points) return;
+    return Object.keys(points).reduce(
+      (a, b) => (points[a] > points[b] ? a : b),
+      0
+    );
+  };
+
   return (
     <div>
       <button
@@ -38,6 +46,12 @@ const App = () => {
       <p>{anecdotes[selected]}</p>
       <button onClick={handleVote}>Vote for this</button>
       <p>This anectode has {points[selected] || 0} votes</p>
+
+      {points && (
+        <p>
+          The highest rated anecdote is "{anecdotes[getHighestRatedIndex()]}"
+        </p>
+      )}
     </div>
   );
 };
