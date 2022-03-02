@@ -1,6 +1,18 @@
 import { useState } from "react";
 
 const App = () => {
+  const handleVote = (props) => {
+    const pointsObj = { ...points };
+    console.log(pointsObj[selected]);
+    if (pointsObj[selected] === undefined) {
+      pointsObj[selected] = 1;
+    } else {
+      pointsObj[selected]++;
+    }
+
+    setPoints(pointsObj);
+  };
+
   const anecdotes = [
     "If it hurts, do it more often",
     "Adding manpower to a late software project makes it later!",
@@ -12,6 +24,8 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [points, setPoints] = useState({});
+  console.log(points);
   return (
     <div>
       <button
@@ -22,6 +36,8 @@ const App = () => {
         Pick a random one
       </button>
       <p>{anecdotes[selected]}</p>
+      <button onClick={handleVote}>Vote for this</button>
+      <p>This anectode has {points[selected] || 0} votes</p>
     </div>
   );
 };
