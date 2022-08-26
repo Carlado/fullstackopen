@@ -3,7 +3,6 @@ import { useState } from "react";
 const App = () => {
   const handleVote = (props) => {
     const pointsObj = { ...points };
-    console.log(pointsObj[selected]);
     if (pointsObj[selected] === undefined) {
       pointsObj[selected] = 1;
     } else {
