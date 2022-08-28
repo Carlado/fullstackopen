@@ -10,6 +10,16 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (
+      persons.some((person) => {
+        return person.name === newName;
+      })
+    ) {
+      alert(`${newName} already exists`);
+      return;
+    }
+
     setPersons([...persons, { name: newName }]);
   };
 
