@@ -23,6 +23,9 @@ function App() {
           .includes(searchTerm.toLowerCase());
       });
 
+  const single = matchingCountries.length === 1 ? matchingCountries[0] : "";
+  console.log(single);
+
   return (
     <div className="App">
       Country: <input value={searchTerm} onChange={handleSearchTermChange} />
@@ -34,6 +37,16 @@ function App() {
             return <li>{country.name.common}</li>;
           })}
         </ul>
+      )}
+      {single && (
+        <div>
+          <h1>{single.name.common}</h1>
+          <ul>
+            {Object.keys(single.languages).map((key) => {
+              return <li>{single.languages[key]}</li>;
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );
